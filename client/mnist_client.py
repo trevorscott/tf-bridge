@@ -41,7 +41,7 @@ import mnist_input_data
 tf.app.flags.DEFINE_integer('concurrency', 1,
                             'maximum number of concurrent inference requests')
 tf.app.flags.DEFINE_integer('num_tests', 1000, 'Number of test images')
-tf.app.flags.DEFINE_string('server', 'localhost:9001', 'PredictionService host:port')
+tf.app.flags.DEFINE_string('server', 'localhost:8999', 'PredictionService host:port')
 tf.app.flags.DEFINE_string('work_dir', '/tmp', 'Working directory. ')
 FLAGS = tf.app.flags.FLAGS
 

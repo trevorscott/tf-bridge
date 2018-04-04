@@ -1,4 +1,4 @@
-# Tensor Bridge
+# Tensor Bridge on Heroku
 
 Tensor Bridge is an [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification) as well as a simple [Connexion](https://github.com/zalando/connexion) wrapper for [TensorFlow Serving](https://github.com/tensorflow/serving).
 
@@ -44,4 +44,30 @@ There is also a simple client located in `client/mnist_client.py` for testing pu
 If everything went well, you will shortly get the following output
 
 `Inference error rate: 10.4%`
+
+
+## Heroku Deploy (No Docker)
+
+### Required Config
+```
+heroku config:set TENSORFLOW_MODEL_URL=https://s3.amazonaws.com/octo-public/mnist_model.tar.gz
+heroku config:set TENSORFLOW_MODEL_NAME=mnist_model
+heroku config:set MODEL=/app/.tf-model/mnist_model
+```
+
+```
+heroku create tf-bridge
+heroku buildpacks:add -i 1 https://github.com/heroku/heroku-buildpack-apt.git
+heroku buildpacks:add -i 2 https://github.com/heroku/heroku-buildpack-python.git
+git push heroku master
+```
+
+Two Processes
+
+1. Tensorflow serving runs on port 9000 and app.py (the reverse proxy) binds to $PORT.
+
+
+
+
+
 

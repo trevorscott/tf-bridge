@@ -1,0 +1,1 @@
+web: tensorflow_model_server --port=9000 --model_name=mnist --model_base_path=/app/.tf-model/$TENSORFLOW_MODEL_NAME && python run app.py
