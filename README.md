@@ -59,6 +59,7 @@ heroku config:set MODEL=/app/.tf-model/mnist_model
 heroku create tf-bridge
 heroku buildpacks:add -i 1 https://github.com/heroku/heroku-buildpack-apt.git
 heroku buildpacks:add -i 2 https://github.com/heroku/heroku-buildpack-python.git
+heroku buildpacks:add -i 3 https://github.com/danp/heroku-buildpack-runit.git
 git push heroku master
 ```
 
