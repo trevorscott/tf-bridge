@@ -1,16 +1,22 @@
 # Tensor Bridge on Heroku
 
-1. Uses the [Apt buildpack](https://github.com/heroku/heroku-buildpack-apt) to download the tensorflow model server and all of its dependencies 
-1. .profile.d script downloads model from s3 during dyno start up via URL set as config var
-1. Runs both tensorflow-serving & tf-bridge processes with the [Runit buildpack](https://github.com/danp/heroku-buildpack-runit)
-1. translates JSON API into gRPC
+Deploy [tensorflow-serving](https://www.tensorflow.org/serving/) & [tensor-bridge](https://github.com/Babylonpartners/tf-bridge) on heroku.
 
+This app exposes the gRPC based `tensorflow-serving` through a REST API.
+
+`tensor-bridge` was originally docker based and has been modified to deploy on heroku without docker.
+
+## Notes
+1. Downloads `tensorflow-model-server` via [Apt buildpack](https://github.com/heroku/heroku-buildpack-apt)
+1. .profile.d script loads model at dyno start up
+1. Runs both tensorflow-serving & tf-bridge processes with the [Runit buildpack](https://github.com/danp/heroku-buildpack-runit)
+
+
+## About Tensor Bridge & Tensorflow Serving
 Tensor Bridge is an [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification) as well as a simple [Connexion](https://github.com/zalando/connexion) wrapper for [TensorFlow Serving](https://github.com/tensorflow/serving).
 
 The specification was obtained by compiling an annotated `tensor_bridge.proto` using [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway).
 The result is located in `swagger/tensor_bridge.json`.
-
-## How is this useful?
 
 The publicly available version of TensorFlow serving works over [gRPC](http://www.grpc.io/).
 
