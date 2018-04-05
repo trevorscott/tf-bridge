@@ -24,9 +24,15 @@ heroku buildpacks:add -i 3 https://github.com/danp/heroku-buildpack-runit.git
 git push heroku heroku-deploy:master
 ```
 
-## Client
+## Test the Server
 
-There is also a simple client located in `client/mnist_client.py` for testing purposes. Make sure to install the necessary dependencies from `requirements.txt`.
+Once the server is up you can test it with `mnist_client.py`.
+
+```
+pipenv --three
+pipenv install -r requirements.txt
+pipenv run python mnist_client.py <your-appname>.herokuapp.com:80
+```
 
 If everything went well, you will shortly get the following output
 
