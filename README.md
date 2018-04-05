@@ -7,7 +7,7 @@ Deploy [tensor-bridge](https://github.com/Babylonpartners/tf-bridge) and [tensor
 ## Notes
 1. The [Apt buildpack](https://github.com/heroku/heroku-buildpack-apt) loads `tensorflow-model-server` & deps
 1. The [Runit buildpack](https://github.com/danp/heroku-buildpack-runit) manages `tensorflow-serving` & `tf-bridge` processes
-1. .profile.d script loads model at dyno start up
+1. .profile.d script loads model from s3 at dyno start up
 1. Models must be exported using the SavedModelBuilder module, which is outlined [here](https://www.tensorflow.org/serving/serving_basic)
 
 
