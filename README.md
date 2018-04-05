@@ -1,6 +1,8 @@
 # Tensor Bridge on Heroku
 
-Use [tensor-bridge](https://github.com/Babylonpartners/tf-bridge) to expose gRPC based [tensorflow-serving](https://www.tensorflow.org/serving/) as a REST API on heroku.
+Deploy [tensor-bridge](https://github.com/Babylonpartners/tf-bridge) and [tensorflow-serving](https://www.tensorflow.org/serving/) on a single dyno.
+
+`tensor-bridge` translates REST requests into gRPC and forwards them to `tensorflow-serving`
 
 ## Notes
 1. The [Apt buildpack](https://github.com/heroku/heroku-buildpack-apt) loads `tensorflow-model-server` & deps
