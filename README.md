@@ -14,7 +14,9 @@ Deploy [tensor-bridge](https://github.com/Babylonpartners/tf-bridge) and [tensor
 ## Deploy
 
 ```
-heroku create tf-bridge
+git clone git@github.com:heroku/tf-bridge.git
+cd tf-bridge
+heroku create <your-appname>
 heroku config:set TENSORFLOW_MODEL_URL=https://s3.amazonaws.com/octo-public/mnist_model.tar.gz
 heroku config:set TENSORFLOW_MODEL_NAME=mnist_model
 heroku config:set MODEL=/app/.tf-model/mnist_model
@@ -29,6 +31,7 @@ git push heroku heroku-deploy:master
 Once the server is up you can test it with `mnist_client.py`.
 
 ```
+cd client
 pipenv --three
 pipenv install -r requirements.txt
 pipenv run python mnist_client.py <your-appname>.herokuapp.com:80
