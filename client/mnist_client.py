@@ -32,18 +32,23 @@ from __future__ import print_function, division
 import numpy
 import requests
 import tensorflow as tf
+import sys
 # This is a placeholder for a Google-internal import.
 from google.protobuf.json_format import MessageToDict, ParseDict
 from tensorflow_serving.apis import predict_pb2
 
 import mnist_input_data
 
+appHostName=sys.argv[1]
 tf.app.flags.DEFINE_integer('concurrency', 1,
                             'maximum number of concurrent inference requests')
 tf.app.flags.DEFINE_integer('num_tests', 1000, 'Number of test images')
-tf.app.flags.DEFINE_string('server', 'tf-bridge.herokuapp.com:80', 'PredictionService host:port')
+tf.app.flags.DEFINE_string('server', appHostName, 'PredictionService host:port')
 tf.app.flags.DEFINE_string('work_dir', '/tmp', 'Working directory. ')
 FLAGS = tf.app.flags.FLAGS
+
+
+
 
 def do_inference(hostport, work_dir, concurrency, num_tests):
   """Tests PredictionService over Tensor-Bridge.
