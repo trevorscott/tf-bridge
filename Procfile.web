@@ -1,2 +1,2 @@
-tf-serving: tensorflow_model_server --port=9000 --model_name=mnist --model_base_path=/app/.tf-model/$TENSORFLOW_MODEL_NAME 
+tf-serving: tensorflow_model_server --port=9000 --model_name=$PROCFILE_MODEL_NAME --model_base_path=/app/.tf-model/$TENSORFLOW_MODEL_NAME 
 tf-bridge: python app.py

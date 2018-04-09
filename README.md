@@ -1,4 +1,4 @@
-# Tensor Bridge on Heroku
+ # Tensor Bridge on Heroku
 
 Deploy [tensor-bridge](https://github.com/Babylonpartners/tf-bridge) and [tensorflow-serving](https://www.tensorflow.org/serving/) on a single dyno.
 
@@ -17,6 +17,7 @@ Deploy [tensor-bridge](https://github.com/Babylonpartners/tf-bridge) and [tensor
 heroku create tf-bridge
 heroku config:set TENSORFLOW_MODEL_URL=https://s3.amazonaws.com/octo-public/mnist_model.tar.gz
 heroku config:set TENSORFLOW_MODEL_NAME=mnist_model
+heroku config:set PROCFILE_MODEL_NAME=mnist
 heroku config:set MODEL=/app/.tf-model/mnist_model
 heroku buildpacks:add -i 1 https://github.com/heroku/heroku-buildpack-apt.git
 heroku buildpacks:add -i 2 https://github.com/heroku/heroku-buildpack-python.git
@@ -32,6 +33,10 @@ If everything went well, you will shortly get the following output
 
 `Inference error rate: 10.4%`
 
+
+## Notes
+
+You must change the name of the model in Procfile.web right now...need to fix this
 
 
 

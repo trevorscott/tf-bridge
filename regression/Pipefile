@@ -1,0 +1,12 @@
+[[source]]
+
+name = "tf-reg-model"
+
+
+[packages]
+
+tensorflow = "*"
+numpy = "*"
+
+[dev-packages]
+
