@@ -18,10 +18,11 @@ import numpy
 import tensorflow as tf
 from datetime import datetime 
 
+from google.protobuf.json_format import MessageToDict, ParseDict
 from tensorflow_serving.apis import predict_pb2
 from tensorflow_serving.apis import prediction_service_pb2
 
-tf.app.flags.DEFINE_string('server', 'localhost:9000', 'PredictionService host:port')
+tf.app.flags.DEFINE_string('server', 'tf-bridge.herokuapp.com:80', 'PredictionService host:port')
 FLAGS = tf.app.flags.FLAGS
 
 def do_inference(hostport):
@@ -38,7 +39,7 @@ def do_inference(hostport):
 
   # prepare request object 
   request = predict_pb2.PredictRequest()
-  request.model_spec.name = 'example1'
+  request.model_spec.name = 'regression'
   request.model_spec.signature_name = 'prediction'
 
   # Randomly generate some test data 
@@ -72,10 +73,9 @@ def main(_):
       print('please specify server host:port')
       return
 
-  result, label, waiting = do_inference(FLAGS.server)
+  result, label = do_inference(FLAGS.server)
   print('Result is: ', result)
   print('Actual label is: ', label)
-  print('Waiting time is: ', waiting, 'microseconds.')
 
 if __name__ == '__main__':
   tf.app.run()
