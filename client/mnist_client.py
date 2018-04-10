@@ -42,7 +42,7 @@ import mnist_input_data
 appHostName=sys.argv[1]
 tf.app.flags.DEFINE_integer('concurrency', 1,
                             'maximum number of concurrent inference requests')
-tf.app.flags.DEFINE_integer('num_tests', 1000, 'Number of test images')
+tf.app.flags.DEFINE_integer('num_tests', 100, 'Number of test images')
 tf.app.flags.DEFINE_string('server', appHostName, 'PredictionService host:port')
 tf.app.flags.DEFINE_string('work_dir', '/tmp', 'Working directory. ')
 FLAGS = tf.app.flags.FLAGS
@@ -69,7 +69,7 @@ def do_inference(hostport, work_dir, concurrency, num_tests):
   error = 0
   for _ in range(num_tests):
     request = predict_pb2.PredictRequest()
-    request.model_spec.name = 'mnist'
+    request.model_spec.name = 'mnist_model'
     request.model_spec.signature_name = 'predict_images'
     image, label = test_data_set.next_batch(1)
     request.inputs['images'].CopyFrom(
@@ -102,8 +102,12 @@ def main(_):
   if not FLAGS.server:
     print('please specify server host:port')
     return
-  error_rate = do_inference(FLAGS.server, FLAGS.work_dir,
-                            FLAGS.concurrency, FLAGS.num_tests)
+
+  print (FLAGS.server)
+  print (FLAGS.work_dir)
+  print (FLAGS.concurrency)
+  print (FLAGS.num_tests)
+  error_rate = do_inference(FLAGS.server, FLAGS.work_dir, FLAGS.concurrency, FLAGS.num_tests)
   print('\nInference error rate: %s%%' % (error_rate * 100))
 
 
