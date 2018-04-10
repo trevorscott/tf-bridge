@@ -27,6 +27,16 @@ heroku buildpacks:add -i 3 https://github.com/danp/heroku-buildpack-runit.git
 git push heroku heroku-deploy:master
 ```
 
+## Deploy Regression
+
+```
+heroku config:set TENSORFLOW_MODEL_URL=https://s3.amazonaws.com/octo-public/regression_model.tar.gz
+heroku config:set TENSORFLOW_MODEL_NAME=regression
+heroku config:set PROCFILE_MODEL_NAME=regression
+heroku config:set MODEL=/app/.tf-model/regression
+
+```
+
 ## Test the Server
 
 Once the server is up you can test it with `mnist_client.py`.
