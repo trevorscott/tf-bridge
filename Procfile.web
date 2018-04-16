@@ -1,2 +1,2 @@
-tf-serving: tensorflow_model_server --port=9000 --model_name=$TENSORFLOW_MODEL_NAME --model_base_path=/app/.tf-model/$TENSORFLOW_MODEL_NAME 
+tf-serving: tensorflow_model_server --port=9000 --model_name=default --model_base_path=/app/.tf-model/default 
 tf-bridge: python app.py
