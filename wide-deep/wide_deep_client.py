@@ -23,7 +23,8 @@ from google.protobuf.json_format import MessageToDict, ParseDict
 from tensorflow_serving.apis import predict_pb2
 from tensorflow_serving.apis import prediction_service_pb2
 
-tf.app.flags.DEFINE_string('server', 'tf-bridge.herokuapp.com:80', 'PredictionService host:port')
+appHostName=sys.argv[1]
+tf.app.flags.DEFINE_string('server', appHostName, 'PredictionService host:port')
 FLAGS = tf.app.flags.FLAGS
 
 def do_inference(hostport):
