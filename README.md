@@ -28,9 +28,9 @@ A pre-made publicly available model is provided here:
 ```
 https://s3.amazonaws.com/octo-public/wide_deep_model.tar.gz
 ```
-More information about this model can be found [here](https://www.tensorflow.org/tutorials/wide_and_deep).
+Some background information about the science behind this model can be found [here](https://www.tensorflow.org/tutorials/wide_and_deep).
 
-You can set the model's URL as a config var via the button deploy or set it manually: 
+Set the provided URL as a config var via the button deploy or set it manually: 
 
 ```
 heroku config:set TENSORFLOW_MODEL_URL=https://s3.amazonaws.com/octo-public/wide_deep_model.tar.gz -a <your_app_name>
