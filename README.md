@@ -14,6 +14,8 @@ Deploy [tensor-bridge](https://github.com/Babylonpartners/tf-bridge) and [tensor
 
 ### MNIST Image Classification
 
+Classify hand written numbers
+
 ```
 cd client
 pipenv --three
@@ -24,18 +26,12 @@ mv 1 ./mnist
 tar -zcvf mnist_model.tar.gz mnist
 ```
 
-### Regression
-```
-cd regression
-pipenv --three
-pipenv install
-pipenv run python mnist_saved_model.py .
-mkdir regression
-mv 1 ./regression
-tar -zcvf regression_model.tar.gz regression
-```
+Save the `.tar.gz` to s3.
 
 ### Wide-Deep Logistic Regression
+
+Using wide & deep classification, predict if use from census data makes over $50K.
+
 ```
 cd wide-deep
 pipenv --three
@@ -43,11 +39,12 @@ pipenv install
 pipenv run python wide_deep.py
 ```
 
-run the client:
+The above script prints out the path to the model, e.g.:
+```
+*********** Done Exporting at PAth - /tmp/census_exported/1234567
+```
 
-```
-pipenv run python wide_deep_client.py 
-```
+zip that up and save it to s3.
 
 
 ## Deploy
@@ -56,25 +53,31 @@ pipenv run python wide_deep_client.py
 git clone git@github.com:heroku/tf-bridge.git
 cd tf-bridge
 heroku create <your-appname>
-heroku config:set TENSORFLOW_MODEL_URL=https://s3.amazonaws.com/octo-public/mnist_model.tar.gz
-heroku config:set TENSORFLOW_MODEL_NAME=mnist_model
 heroku buildpacks:add -i 1 https://github.com/heroku/heroku-buildpack-apt.git
 heroku buildpacks:add -i 2 https://github.com/heroku/heroku-buildpack-python.git
 heroku buildpacks:add -i 3 https://github.com/danp/heroku-buildpack-runit.git
+heroku config:set TENSORFLOW_MODEL_URL=https://s3.amazonaws.com/octo-public/mnist_model.tar.gz
 git push heroku heroku-deploy:master
 ```
 
-## Deploy Regression
+You can change the model via config var:
+
+### Deploy MNIST
+```
+heroku config:set TENSORFLOW_MODEL_URL=https://s3.amazonaws.com/octo-public/mnist_model.tar.gz
+```
+
+### Deploy Wide-Deep Logistic Regression
 
 ```
-heroku config:set TENSORFLOW_MODEL_URL=https://s3.amazonaws.com/octo-public/regression_model.tar.gz
-heroku config:set TENSORFLOW_MODEL_NAME=regression
-
+heroku config:set TENSORFLOW_MODEL_URL=https://s3.amazonaws.com/octo-public/wide_deep_model.tar.gz
 ```
 
 ## Test the Server
 
-Once the server is up you can test it with `mnist_client.py`.
+Clients are provided to test the server:
+
+### Test MNIST
 
 ```
 cd client
@@ -87,10 +90,12 @@ If everything went well, you will shortly get the following output
 
 `Inference error rate: 10.4%`
 
+### Test Wide-Deep Logistic Regression
 
-## Notes
-
-You must change the name of the model in Procfile.web right now...need to fix this
-
-
+```
+cd wide-deep
+pipenv --three
+pipenv install
+pipenv run python wide_deep_client.py <your-appname>.herokuapp.com:80
+```
 
