@@ -34,7 +34,7 @@ You can set the model's URL as a config var via the button deploy or set it manu
 heroku config:set TENSORFLOW_MODEL_URL=https://s3.amazonaws.com/octo-public/wide_deep_model.tar.gz -a <your_app_name>
 ```
 
-A client to test the provided model has also been provided as a sub project in this repo. To run the client and test your server:
+If you want to test your server with the provided model, a client and test data have been provided in the `wide-deep` directory. To run the client and test your server:
 
 ```
 cd wide-deep
