@@ -10,6 +10,11 @@ Deploy both [tensor-bridge](https://github.com/Babylonpartners/tf-bridge) and [t
 
 ## Deploy
 
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+
+
 ```
 git clone git@github.com:heroku/tf-bridge.git
 cd tf-bridge
