@@ -2,6 +2,8 @@
  
 Deploy both [tensor-bridge](https://github.com/Babylonpartners/tf-bridge) and [tensorflow-serving](https://www.tensorflow.org/serving/) so that you can use JSON to talk to your TensorFlow models.
 
+You must provide a link to a Tensorflow [SavedModel](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/saved_model/README.md) saved in the `.tar.gz` format.
+
 ## Deploy
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/heroku/tf-bridge/tree/heroku-deploy)
