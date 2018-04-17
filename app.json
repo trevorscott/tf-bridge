@@ -3,5 +3,21 @@
   "description": "Deploy both tensor-bridge and tensorflow-serving so that you can use JSON to talk to your TensorFlow models.",
   "repository": "https://github.com/heroku/tf-bridge/tree/heroku-deploy",
   "logo": "https://node-js-sample.herokuapp.com/node.png",
-  "keywords": ["tensorflow"]
+  "keywords": ["tensorflow"],
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-apt.git"
+    },
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-python.git"
+    },
+    {
+      "url": "https://github.com/danp/heroku-buildpack-runit.git"
+    }
+  ],
+   "env": {
+    "TENSORFLOW_MODEL_URL": {
+      "description": "URL to your tensorflow SavedModel (in .tar.gz format)"
+    }
+  }
 }
