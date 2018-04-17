@@ -1,0 +1,10 @@
+tensorflow = "*"
+
+
+[packages]
+
+tensorflow = "*"
+requests="*"
+protobuf="*"
+numpy="*"
+tensorflowservingclient="*"

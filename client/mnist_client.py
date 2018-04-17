@@ -69,7 +69,7 @@ def do_inference(hostport, work_dir, concurrency, num_tests):
   error = 0
   for _ in range(num_tests):
     request = predict_pb2.PredictRequest()
-    request.model_spec.name = 'mnist_model'
+    request.model_spec.name = 'default'
     request.model_spec.signature_name = 'predict_images'
     image, label = test_data_set.next_batch(1)
     request.inputs['images'].CopyFrom(

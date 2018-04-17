@@ -39,7 +39,7 @@ def do_inference(hostport):
 
   # prepare request object 
   request = predict_pb2.PredictRequest()
-  request.model_spec.name = 'regression'
+  request.model_spec.name = 'default'
   request.model_spec.signature_name = 'prediction'
 
   # Randomly generate some test data 

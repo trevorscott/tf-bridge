@@ -15,7 +15,7 @@ tensorflowservingclient = "==0.5.1.post2"
 uWSGI = "==2.0.15"
 Werkzeug = "==0.12.2"
 requests = "==2.17.3"
-tensorflow = "==1.2.1"
+tensorflow = "*"
 mock = "*"
 
 
