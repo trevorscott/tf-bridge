@@ -1,6 +1,6 @@
  # Tensor Bridge on Heroku
  
-Deploy [tensor-bridge](https://github.com/Babylonpartners/tf-bridge) and [tensorflow-serving](https://www.tensorflow.org/serving/) together.
+Deploy both [tensor-bridge](https://github.com/Babylonpartners/tf-bridge) and [tensorflow-serving](https://www.tensorflow.org/serving/)
 
 `tensor-bridge` translates REST requests into gRPC and forwards them to `tensorflow-serving`
 
