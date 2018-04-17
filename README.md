@@ -12,7 +12,7 @@ Deploy [tensor-bridge](https://github.com/Babylonpartners/tf-bridge) and [tensor
 
 ## Model Generation
 
-### MNIST
+### MNIST Image Classification
 
 ```
 cd client
@@ -35,7 +35,19 @@ mv 1 ./regression
 tar -zcvf regression_model.tar.gz regression
 ```
 
-Use the AWS console to upload your compressed TF model to a public bucket in s3.
+### Wide-Deep Logistic Regression
+```
+cd wide-deep
+pipenv --three
+pipenv install
+pipenv run python wide_deep.py
+```
+
+run the client:
+
+```
+pipenv run python wide_deep_client.py 
+```
 
 
 ## Deploy

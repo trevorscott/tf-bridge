@@ -28,11 +28,12 @@ FLAGS = tf.app.flags.FLAGS
 
 def do_inference(hostport):
   # Read file and create feature_dict for each record
+  total = 0
+  right = 0
   with open("test_data.csv") as inf:
     for line in inf:
-      print(line)
       # Read data, using python, into our features
-      age, workclass, fnlwgt, education, education_num, marital_status, occupation, relationship, race, gender, capital_gain, capital_loss, hours_per_week, native_country = line.strip().split(",")
+      age, workclass, fnlwgt, education, education_num, marital_status, occupation, relationship, race, gender, capital_gain, capital_loss, hours_per_week, native_country, income = line.strip().split(",")
       
       # Create a feature_dict for train.example - Get Feature Columns using
       feature_dict = {
@@ -63,8 +64,8 @@ def do_inference(hostport):
       request.inputs['inputs'].CopyFrom(
         tf.contrib.util.make_tensor_proto(serialized, shape=[1]))
 
-      print("DEBUG")
-      print(MessageToDict(request,preserving_proto_field_name=True,including_default_value_fields=False))
+      # print("DEBUG")
+      # print(MessageToDict(request,preserving_proto_field_name=True,including_default_value_fields=False))
 
       #get inference
       response = requests.post('http://' + hostport + '/tensor-bridge/v1/prediction',
@@ -78,9 +79,29 @@ def do_inference(hostport):
                          ignore_unknown_fields=True)
 
       print('--------------------------')
-      print('Raw response', response.json())
-      print('Result: ', result)
+      # print(line)
+      # print('Raw response', response.json())
+      # print('Result: ', result)
+      # print(response.json()["outputs"]["scores"]["float_val"])
+      
+      total = total + 1
+      if float(response.json()["outputs"]["scores"]["float_val"][1]) <= .5:
+        prediction = "<=50K"
+        print("predicted: <=50K")
+        print("Actual: ",income)
+      else:
+        prediction = ">50K"
+        print("predicted: >50K")
+        print("Actual: ",income)
 
+      if income == prediction: 
+        right = right + 1
+
+    print('--------------------------')
+    print('--------------------------')
+    print ("Accuracy: ",right/total)
+    print('--------------------------')
+    print('--------------------------')
   return
 
 
