@@ -66,7 +66,7 @@ def do_inference(hostport):
         tf.contrib.util.make_tensor_proto(serialized, shape=[1]))
 
       # print("DEBUG")
-      # print(MessageToDict(request,preserving_proto_field_name=True,including_default_value_fields=False))
+      print(MessageToDict(request,preserving_proto_field_name=True,including_default_value_fields=False))
 
       #get inference
       response = requests.post('http://' + hostport + '/tensor-bridge/v1/prediction',
