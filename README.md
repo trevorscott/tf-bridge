@@ -2,7 +2,25 @@
  
 Deploy both [tensor-bridge](https://github.com/Babylonpartners/tf-bridge) and [tensorflow-serving](https://www.tensorflow.org/serving/) so that you can use JSON to talk to your TensorFlow models.
 
-You must provide a link to a Tensorflow [SavedModel](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/saved_model/README.md) saved in the `.tar.gz` format.
+## Requirements
+
+You must provide a URL for a Tensorflow [SavedModel](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/saved_model/README.md) saved as a `.tar.gz` file. 
+
+E.g.:
+
+```
+https://s3.amazonaws.com/octo-public/wide_deep_model.tar.gz
+```
+
+The unzipped directory structure should be similar to:
+
+```
+/wide_deep_model
+/wide_deep_model/1
+/wide_deep_model/1/saved_model.pb
+/wide_deep_model/1/variables
+etc...
+```
 
 ## Deploy
 
@@ -21,7 +39,7 @@ heroku config:set TENSORFLOW_MODEL_URL=https://s3.amazonaws.com/<your-public-buc
 git push heroku heroku-deploy:master
 ```
 
-## Test the Server
+## Example Model & Client
 
 A pre-made publicly available model is provided here:
 
