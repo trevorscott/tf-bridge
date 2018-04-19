@@ -66,7 +66,7 @@ def do_inference(hostport):
         tf.contrib.util.make_tensor_proto(serialized, shape=[1]))
 
       # print("DEBUG")
-      print(MessageToDict(request,preserving_proto_field_name=True,including_default_value_fields=False))
+      # print(MessageToDict(request,preserving_proto_field_name=True,including_default_value_fields=False))
 
       #get inference
       response = requests.post('http://' + hostport + '/tensor-bridge/v1/prediction',
@@ -79,7 +79,8 @@ def do_inference(hostport):
                          predict_pb2.PredictResponse(),
                          ignore_unknown_fields=True)
 
-      print('--------------------------')
+      # DEBUG
+      # print('--------------------------')
       # print(line)
       # print('Raw response', response.json())
       # print('Result: ', result)
@@ -88,12 +89,12 @@ def do_inference(hostport):
       total = total + 1
       if float(response.json()["outputs"]["scores"]["float_val"][1]) <= .5:
         prediction = "<=50K"
-        print("predicted: <=50K")
-        print("Actual: ",income)
+        # print("predicted: <=50K")
+        # print("Actual: ",income)
       else:
         prediction = ">50K"
-        print("predicted: >50K")
-        print("Actual: ",income)
+        # print("predicted: >50K")
+        # print("Actual: ",income)
 
       if income == prediction: 
         right = right + 1
