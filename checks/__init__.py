@@ -9,7 +9,7 @@ MODEL_REQUEST = {
         "signature_def"
     ],
     "model_spec": {
-        "name": os.environ['MODEL']
+        "name": f"/app/.tf-model/default"
     }
 }
 

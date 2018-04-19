@@ -1,0 +1,16 @@
+build-essential 
+curl 
+libcurl3-dev 
+git 
+libfreetype6-dev 
+libpng12-dev 
+libzmq3-dev 
+pkg-config 
+python-dev 
+python-numpy 
+python-pip 
+software-properties-common 
+swig 
+zip 
+zlib1g-dev
+http://storage.googleapis.com/tensorflow-serving-apt/pool/tensorflow-model-server/t/tensorflow-model-server/tensorflow-model-server_1.5.0_all.deb

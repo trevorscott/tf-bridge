@@ -1,9 +1,11 @@
 import connexion
+import os
 from api.resolver import tensor_bridge_api_resolver
 from connexion.resolver import Resolver
 from checks import Checks
 
-DEBUG = False
+DEBUG = True
+PORT = os.environ['PORT']
 
 app = connexion.App(__name__, specification_dir='swagger/', debug=DEBUG)
 app.add_api('tensor_bridge.json',
@@ -12,6 +14,6 @@ app.add_api('tensor_bridge.json',
 Checks(app.app)
 
 if DEBUG:
-    app.run(port=8999, debug=False)
+    app.run(port=PORT, debug=False)
 else:
     application = app.app

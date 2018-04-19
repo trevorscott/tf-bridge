@@ -1,47 +1,63 @@
-# Tensor Bridge
+ # Tensor Bridge on Heroku
+ 
+Deploy both [tensor-bridge](https://github.com/Babylonpartners/tf-bridge) and [tensorflow-serving](https://www.tensorflow.org/serving/) so that you can use JSON to talk to your TensorFlow models.
 
-Tensor Bridge is an [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification) as well as a simple [Connexion](https://github.com/zalando/connexion) wrapper for [TensorFlow Serving](https://github.com/tensorflow/serving).
+You must provide a link to a Tensorflow [SavedModel](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/saved_model/README.md) saved in the `.tar.gz` format.
 
-The specification was obtained by compiling an annotated `tensor_bridge.proto` using [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway).
-The result is located in `swagger/tensor_bridge.json`.
+## Deploy
 
-## How is this useful?
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/heroku/tf-bridge/tree/heroku-deploy)
 
-The publicly available version of TensorFlow serving works over [gRPC](http://www.grpc.io/).
+### From Source
 
-Now you can use the API to build your own REST service and use JSON to talk to your TensorFlow models. A full example is included in this repo (see `app.py` and `api/`).
-If you prefer Go, you can even generate a reverse proxy automatically using [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway).
-
-## Installation
-
-Simply run 
-
-```bash
-docker build -t tf-bridge .
 ```
-from the project root.
-
-This will take a while as you are compiling TensorFlow and TensorFlow Serving from source.
-(Consider dedicating around 6-8 GB of RAM to Docker)
-
-When the image is created you can start the servers
-
-```bash
-docker run -d -p 9001:9001 -p 9000:9000 -e MODEL=mnist tf-bridge
+git clone git@github.com:heroku/tf-bridge.git
+cd tf-bridge
+heroku create <your-appname>
+heroku buildpacks:add -i 1 https://github.com/heroku/heroku-buildpack-apt.git
+heroku buildpacks:add -i 2 https://github.com/heroku/heroku-buildpack-python.git
+heroku buildpacks:add -i 3 https://github.com/danp/heroku-buildpack-runit.git
+heroku config:set TENSORFLOW_MODEL_URL=https://s3.amazonaws.com/<your-public-bucket>/<your-publicly-accessible-model>.tar.gz
+git push heroku heroku-deploy:master
 ```
-Tensor Bridge can be queried at `9001`.
 
-The gRPC endpoint is still available at `9000` for convenience and testing.
+## Test the Server
 
-You will notice that we use the `MODEL` variable to specify the model. As an example, we included an exported MNIST model in this repo.
+A pre-made publicly available model is provided here:
 
-To see the Swagger UI go to `http://localhost:9001/ui/`
+```
+https://s3.amazonaws.com/octo-public/wide_deep_model.tar.gz
+```
+Some background information about the science behind this model can be found [here](https://www.tensorflow.org/tutorials/wide_and_deep).
 
-## Client
+Set the provided URL as a config var via the button deploy or set it manually: 
 
-There is also a simple client located in `client/mnist_client.py` for testing purposes. Make sure to install the necessary dependencies from `requirements.txt`.
+```
+heroku config:set TENSORFLOW_MODEL_URL=https://s3.amazonaws.com/octo-public/wide_deep_model.tar.gz -a <your_app_name>
+```
 
-If everything went well, you will shortly get the following output
+If you want to test your server with the provided model, a client and test data have been provided in the `wide-deep` directory. To run the client and test your server:
 
-`Inference error rate: 10.4%`
+```
+cd wide-deep
+pipenv --three
+pipenv install
+pipenv run python wide_deep_client.py <your-appname>.herokuapp.com:80
+```
+
+If all goes well you should see:
+
+```
+--------------------------
+--------------------------
+Accuracy:  0.8
+--------------------------
+--------------------------
+```
+
+## Notes
+1. The [Apt buildpack](https://github.com/heroku/heroku-buildpack-apt) loads `tensorflow-model-server` & deps
+1. The [Runit buildpack](https://github.com/danp/heroku-buildpack-runit) manages `tensorflow-serving` & `tf-bridge` processes
+1. `.profile.d` script loads models from the `TENSORFLOW_MODEL_URL` config var
+1. Models must be exported using the `SavedModelBuilder` module, which is outlined [here](https://www.tensorflow.org/serving/serving_basic)
 
