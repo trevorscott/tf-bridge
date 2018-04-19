@@ -6,7 +6,7 @@ You must provide a link to a Tensorflow [SavedModel](https://github.com/tensorfl
 
 ## Deploy
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/heroku/tf-bridge/tree/heroku-deploy)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/heroku/tf-bridge)
 
 ### From Source
 
