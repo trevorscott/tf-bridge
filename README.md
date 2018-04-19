@@ -64,7 +64,8 @@ heroku config:set TENSORFLOW_MODEL_URL=https://s3.amazonaws.com/octo-public/wide
 If you want to test your server with the provided model, a client and test data have been provided in the `wide-deep` directory. To run the client and test your server:
 
 ```
-cd wide-deep
+git clone git@github.com:heroku/tf-bridge.git
+cd tf-bridge/wide-deep
 pipenv --three
 pipenv install
 pipenv run python wide_deep_client.py <your-appname>.herokuapp.com:80
