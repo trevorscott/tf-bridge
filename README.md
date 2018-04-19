@@ -12,14 +12,21 @@ E.g.:
 https://s3.amazonaws.com/octo-public/wide_deep_model.tar.gz
 ```
 
-The unzipped directory structure should be similar to:
+If the root directory of your model is `wide_deep_model` then you can use this command to zip it up:
 
 ```
-/wide_deep_model
-/wide_deep_model/1
-/wide_deep_model/1/saved_model.pb
-/wide_deep_model/1/variables
-etc...
+tar -zcvf wide_deep_model.tar.gz wide_deep_model
+```
+
+The unzipped directory structure should looke like this:
+
+```
+wide_deep_model
+wide_deep_model/1
+wide_deep_model/1/variables
+wide_deep_model/1/saved_model.pb
+wide_deep_model/1/variables/variables.data-00000-of-00001
+wide_deep_model/1/variables/variables.index
 ```
 
 ## Deploy
