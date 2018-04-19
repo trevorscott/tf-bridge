@@ -1,4 +1,4 @@
- # Tensor Bridge on Heroku
+ # Tensorflow Serving & Tensor Bridge Server
  
 Deploy both [tensor-bridge](https://github.com/Babylonpartners/tf-bridge) and [tensorflow-serving](https://www.tensorflow.org/serving/) so that you can use JSON to talk to your TensorFlow models.
 
