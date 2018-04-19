@@ -49,10 +49,16 @@ pipenv run python wide_deep.py
 
 The above script prints out the path to the model, e.g.:
 ```
-*********** Done Exporting at PAth - /tmp/census_exported/1234567
+*********** Done Exporting at PAth - /tmp/census_exported/1524171786
 ```
 
-zip that up and save it to s3. Set the config var to point to your new model:
+Then move it and zip it up and save it to s3:
+
+```
+mv /tmp/census_exported/1524171786/ /Users/tscott/heroku/tensorflow/models/wide-deep2/1
+cd /Users/tscott/heroku/tensorflow/models/
+tar -zcvf wide_deep2_model.tar.gz wide-deep2
+```
 
 ```
 heroku config:set TENSORFLOW_MODEL_URL=https://s3.amazonaws.com/<your_bucket>/wide_deep_model.tar.gz
