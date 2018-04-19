@@ -1,7 +1,8 @@
-==========================================================================================================
-Private-M
+
+Private-M x1
 ==========================================================================================================
 
+```
 ~ $ VALS=( 75 100 125 150 175 200 )
 ~ $ for CONCURRENT in ${VALS[@]}; do siege --file=requests.txt --content-type="application/json" --time=15 --concurrent=$CONCURRENT --delay=1; sleep 180; done
 ** SIEGE 3.0.8
@@ -144,13 +145,12 @@ the directive 'show-logfile' to false.
 2018-04-18 22:51:13, 211892,     899.98,         261,       0.14,      235.44,        0.29,       32.18,  211892,       0
 2018-04-18 23:09:13, 210896,     899.98,         260,       0.24,      234.33,        0.29,       57.17,  210896,       0
 2018-04-18 23:27:13, 211027,     899.98,         260,       0.35,      234.48,        0.29,       82.59,  211027,       0
+```
 
+
+Private-L x1
 ==========================================================================================================
-
-Private-L
-
-==========================================================================================================
-
+```
 ~ $ VALS=( 125 150 175 200 225 250 )
 ~ $ for CONCURRENT in ${VALS[@]}; do siege --file=requests.txt --content-type="application/json" --time=15 --concurrent=$CONCURRENT --delay=1; sleep 180; done
 ** SIEGE 3.0.8
@@ -293,12 +293,11 @@ the directive 'show-logfile' to false.
 2018-04-19 01:21:18, 254268,     899.98,         313,       0.21,      282.53,        0.35,       58.94,  254268,       0
 2018-04-19 01:39:18, 253989,     899.98,         313,       0.30,      282.22,        0.35,       83.65,  253989,       0
 2018-04-19 01:57:18, 253973,     899.98,         313,       0.39,      282.20,        0.35,      109.36,  253973,       0
-
-==========================================================================================================
+```
 
 Private-L x2
-
 ==========================================================================================================
+```
 ~ $ VALS=( 200 250 300 350 400 450 )
 ~ $ for CONCURRENT in ${VALS[@]}; do siege --file=requests.txt --content-type="application/json" --time=15 --concurrent=$CONCURRENT --delay=1; sleep 180; done
 ** SIEGE 3.0.8
@@ -346,12 +345,12 @@ FILE: /app/siege.log
 You can disable this annoying message by editing
 the .siegerc file in your home directory; change
 the directive 'show-logfile' to false.
+```
 
-==========================================================================================================
-Private-L x2
-......2nd Attempt..... (first attempt timed out)
+Private-L x2 (2nd attempt, first timed out)
 ==========================================================================================================
 
+```
 ~ $ VALS=( 200 250 300 350 400 450 )
 ~ $ for CONCURRENT in ${VALS[@]}; do siege --file=requests.txt --content-type="application/json" --time=15 --concurrent=$CONCURRENT --delay=1; sleep 180; done
 ** SIEGE 3.0.8
@@ -486,4 +485,4 @@ FILE: /app/siege.log
 You can disable this annoying message by editing
 the .siegerc file in your home directory; change
 the directive 'show-logfile' to false.
-
+```
