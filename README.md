@@ -18,7 +18,7 @@ If the root directory of your model is `wide_deep_model` then you can use this c
 tar -zcvf wide_deep_model.tar.gz wide_deep_model
 ```
 
-The unzipped directory structure should looke like this:
+The unzipped directory structure should look like this:
 
 ```
 wide_deep_model
