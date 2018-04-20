@@ -81,6 +81,10 @@ Accuracy:  0.8
 --------------------------
 ```
 
+### Server Benchmarks w/ Example Model
+
+See [`SIEGE.md`](/SIEGE.md) for details
+
 ## Notes
 1. The [Apt buildpack](https://github.com/heroku/heroku-buildpack-apt) loads `tensorflow-model-server` & deps
 1. The [Runit buildpack](https://github.com/danp/heroku-buildpack-runit) manages `tensorflow-serving` & `tf-bridge` processes
