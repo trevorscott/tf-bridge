@@ -38,7 +38,7 @@ wide_deep_model/1/variables/variables.index
 ```
 git clone git@github.com:trevorscott/tf-bridge.git
 cd tf-bridge
-heroku create <your-appname>
+heroku create $appName
 heroku buildpacks:add -i 1 https://github.com/heroku/heroku-buildpack-apt.git
 heroku buildpacks:add -i 2 https://github.com/heroku/heroku-buildpack-python.git
 heroku buildpacks:add -i 3 https://github.com/danp/heroku-buildpack-runit.git
@@ -58,7 +58,7 @@ Some background information about the model can be found [here](https://www.tens
 Set the provided URL as a config var via the button deploy or set it manually: 
 
 ```
-heroku config:set TENSORFLOW_MODEL_URL=https://s3.amazonaws.com/octo-public/wide_deep_model.tar.gz -a <your_app_name>
+heroku config:set TENSORFLOW_MODEL_URL=https://s3.amazonaws.com/octo-public/wide_deep_model.tar.gz -a $appName
 ```
 
 If you want to test your server with the provided model, a client and test data have been provided in the `wide-deep` directory. To run the client and test your server:
@@ -68,7 +68,7 @@ git clone git@github.com:heroku/tf-bridge.git
 cd tf-bridge/wide-deep
 pipenv --three
 pipenv install
-pipenv run python wide_deep_client.py <your-appname>.herokuapp.com:80
+pipenv run python wide_deep_client.py $appName.herokuapp.com:80
 ```
 
 If all goes well you should see:
