@@ -36,7 +36,7 @@ wide_deep_model/1/variables/variables.index
 ### From Source
 
 ```
-git clone git@github.com:heroku/tf-bridge.git
+git clone git@github.com:trevorscott/tf-bridge.git
 cd tf-bridge
 heroku create <your-appname>
 heroku buildpacks:add -i 1 https://github.com/heroku/heroku-buildpack-apt.git
