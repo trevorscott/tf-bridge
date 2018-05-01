@@ -43,7 +43,7 @@ heroku buildpacks:add -i 1 https://github.com/heroku/heroku-buildpack-apt.git
 heroku buildpacks:add -i 2 https://github.com/heroku/heroku-buildpack-python.git
 heroku buildpacks:add -i 3 https://github.com/danp/heroku-buildpack-runit.git
 heroku config:set TENSORFLOW_MODEL_URL=https://s3.amazonaws.com/<your-public-bucket>/<your-publicly-accessible-model>.tar.gz
-git push heroku heroku-deploy:master
+git push heroku master
 ```
 
 ## Example Model & Client
@@ -53,7 +53,7 @@ A pre-made publicly available model is provided here:
 ```
 https://s3.amazonaws.com/octo-public/wide_deep_model.tar.gz
 ```
-Some background information about the science behind this model can be found [here](https://www.tensorflow.org/tutorials/wide_and_deep).
+Some background information about the model can be found [here](https://www.tensorflow.org/tutorials/wide_and_deep).
 
 Set the provided URL as a config var via the button deploy or set it manually: 
 
