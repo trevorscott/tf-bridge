@@ -1,7 +1,7 @@
 {
   "name": "tf-bridge",
   "description": "Deploy both tensor-bridge and tensorflow-serving so that you can use JSON to talk to your TensorFlow models.",
-  "repository": "https://github.com/heroku/tf-bridge",
+  "repository": "https://github.com/trevorscott/tf-bridge",
   "logo": "https://node-js-sample.herokuapp.com/node.png",
   "keywords": ["tensorflow"],
   "buildpacks": [
