@@ -75,7 +75,7 @@ def do_inference(hostport, work_dir, concurrency, num_tests):
     request.inputs['images'].CopyFrom(
         tf.contrib.util.make_tensor_proto(image[0], shape=[1, image[0].size]))
 
-    response = requests.post('http://' + hostport + '/tensor-bridge/v1/prediction',
+    response = requests.post(hostport + '/tensor-bridge/v1/prediction',
                              json=MessageToDict(
                                  request,
                                  preserving_proto_field_name=True,

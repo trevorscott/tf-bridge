@@ -68,7 +68,7 @@ git clone git@github.com:heroku/tf-bridge.git
 cd tf-bridge/wide-deep
 pipenv --three
 pipenv install
-pipenv run python wide_deep_client.py $appName.herokuapp.com:80
+pipenv run python wide_deep_client.py https://$appName.herokuapp.com
 ```
 
 If all goes well you should see:

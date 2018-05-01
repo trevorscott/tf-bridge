@@ -69,7 +69,7 @@ def do_inference(hostport):
       # print(MessageToDict(request,preserving_proto_field_name=True,including_default_value_fields=False))
 
       #get inference
-      response = requests.post('http://' + hostport + '/tensor-bridge/v1/prediction',
+      response = requests.post(hostport + '/tensor-bridge/v1/prediction',
                                json=MessageToDict(
                                  request,
                                  preserving_proto_field_name=True,
